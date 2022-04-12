@@ -1,0 +1,22 @@
+yumdownloader –resolve название_ПО
+
+rpm -iv /tmp/repo/deltarpm-3.6-3.el7.x86_64.rpm
+rpm -iv /tmp/repo/python-deltarpm-3.6-3.el7.x86_64.rpm
+rpm -iv /tmp/repo/createrepo-0.9.9-28.el7.noarch.rpm
+createrepo /tmp/repo
+mv /etc/yum.repos.d/redhat.repo /etc/yum.repos.d/redhat.repo1
+mv /etc/yum.repos.d/RHEL7_latest_extras.repo /etc/yum.repos.d/RHEL7_latest_extras.repo1
+mv /etc/yum.repos.d/RHEL7_latest_optional.repo /etc/yum.repos.d/RHEL7_latest_optional.repo1
+mv /etc/yum.repos.d/RHEL7_latest.repo /etc/yum.repos.d/RHEL7_latest.repo1
+echo "[local]" >> /etc/yum.repos.d/local.repo
+echo "name=local" >> /etc/yum.repos.d/local.repo
+echo "baseurl=file:///tmp/repo" >> /etc/yum.repos.d/local.repo
+echo "enabled=1" >> /etc/yum.repos.d/local.repo
+echo "gpgcheck=0" >> /etc/yum.repos.d/local.repo
+echo script2
+echo "mv /etc/yum.repos.d/redhat.repo1 /etc/yum.repos.d/redhat.repo" >> ./script2.sh
+echo "mv /etc/yum.repos.d/RHEL7_latest_extras.repo1 /etc/yum.repos.d/RHEL7_latest_extras.repo" >> ./script2.sh
+echo "mv /etc/yum.repos.d/RHEL7_latest_optional.repo1 /etc/yum.repos.d/RHEL7_latest_optional.repo" >> ./script2.sh
+echo "mv /etc/yum.repos.d/RHEL7_latest.repo1 /etc/yum.repos.d/RHEL7_latest.repo" >> ./script2.sh
+echo "rm /etc/yum.repos.d/local.repo" >> ./script2.sh
+chmod 777 ./script2.sh
